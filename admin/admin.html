@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Page</title>
+  <script src="../shared/session.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background-color: white;
+      padding: 50px;	
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      color: #194e74;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      color: #333;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      margin-top: 30px;
+      padding: 12px;
+      background-color: #194e74;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #153e5a;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Set Session Links</h2>
+    <label>Technical Session URL:</label>
+    <input type="text" id="tech" placeholder="https://...">
+    <label>Standup Call URL:</label>
+    <input type="text" id="standup" placeholder="https://...">
+    <label>Softskill Session URL:</label>
+    <input type="text" id="soft" placeholder="https://...">
+    <button onclick="saveLinks()">Save Links</button>
+  </div>
+  <script>
+    function saveLinks() {
+      const tech = document.getElementById('tech').value;
+      const standup = document.getElementById('standup').value;
+      const soft = document.getElementById('soft').value;
+      saveSessionLinks(tech, standup, soft);
+      alert("Links saved successfully!");
+    }
+  </script>
+</body>
+</html>
