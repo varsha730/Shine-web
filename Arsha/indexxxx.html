@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shine Gateway - Tips & Motivation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" href="../sampp.png">
+  <style>
+    body {
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+    }
+
+    .main-container {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #1b4f72;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0px;
+      left: 0;
+      z-index: 999;
+    }
+
+    .sidebar h4 {
+      margin-bottom: 20px;
+      color: white;
+      font-weight: 700;
+    }
+.heddd{
+  position: relative;
+  top: -150px;
+
+}
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #2c3e50;
+    
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #2980b9;
+      transform: scale(1.05);
+    }
+
+    .navbar {
+      height: 60px;
+      position: fixed;
+      top: 0;
+      left: 250px;
+      right: 0;
+      z-index: 1000;
+    }
+
+    .content {
+      margin-left: 270px;
+      padding: 90px 30px 30px; /* top padding increased for navbar */
+      width: calc(100% - 270px);
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      margin-bottom: 30px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section {
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-effect {
+      transition: all 0.3s ease-in-out;
+      transform-style: preserve-3d;
+    }
+
+    .card-effect:hover {
+      transform: rotateY(5deg) scale(1.05);
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    }
+
+    .carousel-item blockquote {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 20px;
+      border-left: 5px solid #3498db;
+      border-radius: 8px;
+      font-style: italic;
+      font-size: 1.2rem;
+    }
+
+    .typing-wrap {
+      font-size: 1.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .cursor {
+      display: inline-block;
+      animation: blink 0.7s infinite;
+      color: rgb(8, 8, 8);
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width:50%}
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #0d0e0e; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+
+      .navbar {
+        left: 0;
+      }
+
+      .content {
+        margin-left: 0;
+        padding-top: 100px;
+        width: 100%;
+      }
+    }
+ .card-effect {
+  color: #0d0e0e;
+   transition: all 0.3s ease-in-out;
+      transform-style: preserve-3d;
+}
+
+  .word-day:hover {
+      transform: rotateY(3deg) scale(1);
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Navbar (top-right profile dropdown) -->
+<nav class="navbar navbar-expand-lg  px-4">
+  <div class="container-fluid justify-content-end">
+    <span class="text-white me-2 fw-semibold">Varsha</span>
+    <div class="dropdown">
+      <a class="btn btn-outline-white dropdown-toggle" href="#" role="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="../img/varsha.jpg" width="30" height="30" class="rounded-circle" alt="Profile" />
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+        <li><a class="dropdown-item" href="#">My Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="../coding/index.html">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar and Main Content -->
+<div class="main-container">
+  <div class="sidebar">
+    <img src="../samp.png"  width="150px" height="150px" class="nav-brand" alt="logo">
+    <div class="headdd">
+    <a href="#">Home</a>
+    <a href="stu.html">Student Detail's</a>
+    <a href="#">Technical Task</a>
+    <a href="applitude.html">Aptitude Task </a>
+    <a href="softskill.html">SoftSkill Task</a>
+    <a href="#">Attendance</a>
+    <a href="#">Meetings</a>
+    <a href="../Quizzfinal/Quizz/quiz.html">Quiz</a>
+    <a href="job apply notes.html">Job Apply Notes</a>
+
+  </div>
+  </div>
+
+  <div class="content">
+    <h2 class="typing-wrap text-dark mb-4">
+      <span id="typing-text"></span><span class="cursor">|</span>
+    </h2>
+
+    <div class="section mb-5">
+      <h2 class="mb-4">💼Meetings</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card card-effect shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">📖Technical Session</h5>
+              <p class="card-text">  Monday-Friday, Timing: 10.00 AM</p>
+              <p class="card-text"><a target="_blank" href="https://teams.microsoft.com/meet/4370434162963?p=wMPCzlpPl0q2FcHHAc <https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZGQzZGMzYWEtZDYwNi00MjdiLWE5NjUtYzNkZTlkYTVjNjFi%40thread.v2/0?context=%7b%22Tid%22%3a%22406f6fb2-e087-4d29-9642-817873fddc4c%22%2c%22Oid%22%3a%22d6fe5a6c-cfac-4c57-b62a-93f939782cb4%22%7d>">Join Session</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-effect shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">📞👥 Stand Up Call</h5>
+              <p class="card-text">  Monday, Wednesday, Friday, Timing: 09.30 AM</p>
+
+              <p class="card-text"><a target="_blank" href="https://teams.microsoft.com/meet/415725448013?p=3y02sNTVAIDBEa8jWK <https://teams.microsoft.com/l/meetup-join/19%3ameeting_MzMwNjk4N2YtNDAzNC00MzAyLTg2NDQtZGFmYzA2MzE2Mzdh%40thread.v2/0?context=%7b%22Tid%22%3a%22406f6fb2-e087-4d29-9642-817873fddc4c%22%2c%22Oid%22%3a%22d6fe5a6c-cfac-4c57-b62a-93f939782cb4%22%7d>">Join Session</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-effect shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">🧠 SoftSkill Session</h5>
+              <p class="card-text">  Monday and Friday, Timing: 03.00 PM</p>
+
+              <p class="card-text"><a target="_blank" href="https://teams.microsoft.com/meet/4628780208999?p=M0VzsXQ3fU049CJAWC <https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZDg1NWI2MzctMDIwNC00ODgwLTljZjUtNDI4NTdiYTU4ZDg4%40thread.v2/0?context=%7b%22Tid%22%3a%22406f6fb2-e087-4d29-9642-817873fddc4c%22%2c%22Oid%22%3a%22d6fe5a6c-cfac-4c57-b62a-93f939782cb4%22%7d>">Join Session</a></p>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+    <div class="section mb-4 ">
+  <h4 class="text-primary-dark fw-bold">📘 Word for the Day</h4>
+ <div class=" card p-3 card-effect rounded shadow" id="wordBox" >
+  <p><strong>Word:</strong> <span id="word"></span></p>
+  <p><strong>Definition:</strong> <span id="definition"></span></p>
+  <p><strong>Example:</strong> <span id="example"></span></p>
+</div>
+
+</div>
+
+
+    <div class="section mb-5">
+      <h2 class="mb-4">💼 Interview Tips</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card card-effect shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">📖 Research the Company</h5>
+              <p class="card-text">Know their mission, values, and recent achievements.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-effect shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">💬 Practice Speaking</h5>
+              <p class="card-text">Use STAR format for behavioral answers (Situation, Task, Action, Result).</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-effect shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">👗 Dress to Impress</h5>
+              <p class="card-text">Wear neat and appropriate clothes to boost your confidence.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-effect shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">✉️ Follow-Up Email</h5>
+              <p class="card-text">Send a thank-you note to reinforce interest and professionalism.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section mb-5">
+      <h2 class="mb-4">💡 Motivational Quotes</h2>
+      <div id="quoteCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <blockquote>"Push yourself, because no one else is going to do it for you."</blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote>"Success is not final, failure is not fatal: it is the courage to continue that counts." – Winston Churchill</blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote>"Dream big. Work hard. Stay focused. Surround yourself with good people."</blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote>"Believe in yourself and all that you are. Know that there is something inside you greater than any obstacle."</blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="mb-4">🌟 Testimonials</h2>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <blockquote>"Thanks to Shine Gateway, I aced my interview and landed my dream job!" – A Happy Learner</blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote>"The tips and motivation shared here changed my career path for the better." – Career Starter</blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote>"Every section on this site boosts your confidence before big interviews!" – Final Year Student</blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Typing Animation -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const text = "Empower Your Journey with Confidence!";
+    const typingText = document.getElementById("typing-text");
+    let index = 0;
+
+    function typeCharacter() {
+      if (index < text.length) {
+        typingText.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeCharacter, 100);
+      }
+    }
+
+    typeCharacter();
+  });
+
+  const wordList = [
+    {
+      word: "Perseverance",
+      definition: "Persistence in doing something despite difficulty or delay in achieving success.",
+      example: "Her perseverance in studying led her to pass the exam."
+    },
+    {
+      word: "Synergy",
+      definition: "Combined effort for greater effect.",
+      example: "Synergy between teams led to success."
+    },
+    {
+      word: "Empathy",
+      definition: "Understanding and sharing another's feelings.",
+      example: "Empathy improves relationships."
+    },
+    {
+      word: "Innovation",
+      definition: "Introducing new ideas or methods.",
+      example: "Innovation drives progress."
+    },
+    {
+      word: "Integrity",
+      definition: "Being honest and morally upright.",
+      example: "He is respected for his integrity."
+    },
+     {
+    word: "Leadership",
+    definition: "The action of leading a group of people or an organization.",
+    example: "Her leadership inspired the entire team."
+  },
+  {
+    word: "Initiative",
+    definition: "The ability to assess and initiate things independently.",
+    example: "Taking initiative is key to personal and career growth."
+  },
+   {
+    word: "Algorithm",
+    definition: "A set of rules or steps used to solve a problem or perform a task.",
+    example: "The search engine uses a complex algorithm to display relevant results."
+  },
+  {
+    word: "Blockchain",
+    definition: "A decentralized digital ledger that records transactions across many computers.",
+    example: "Blockchain technology is revolutionizing financial systems."
+  },
+  {
+    word: "Cloud Computing",
+    definition: "The delivery of computing services over the internet.",
+    example: "Cloud computing allows access to data from anywhere."
+  },
+  {
+    word: "Cybersecurity",
+    definition: "The practice of protecting systems, networks, and programs from digital attacks.",
+    example: "Cybersecurity is a top priority in data-sensitive industries."
+  },
+  {
+    word: "Machine Learning",
+    definition: "A subset of AI that enables systems to learn and improve from experience.",
+    example: "Machine learning is used to make product recommendations."
+  },
+  {
+    word: "Quantum Computing",
+    definition: "A type of computing that uses quantum bits for faster processing.",
+    example: "Quantum computing has the potential to solve complex problems much faster than classical computers."
+  },
+  {
+    word: "Metaverse",
+    definition: "A collective virtual shared space, merging physical and digital realities.",
+    example: "The metaverse is being developed as the next frontier in digital interaction."
+  },
+  {
+    word: "DevOps",
+    definition: "A set of practices that combines software development and IT operations.",
+    example: "DevOps aims to shorten the system development life cycle."
+  },
+  {
+    word: "Edge Computing",
+    definition: "Processing data near the source of data generation instead of relying on a central server.",
+    example: "Edge computing improves response time and saves bandwidth."
+  },
+  {
+    word: "Augmented Reality",
+    definition: "Technology that overlays digital content onto the real world.",
+    example: "Augmented reality is used in mobile games and interactive learning apps."
+  },
+  {
+    word: "Neural Network",
+    definition: "A network of algorithms designed to recognize patterns, similar to the human brain.",
+    example: "Neural networks are used in image and speech recognition."
+  },
+  {
+    word: "API",
+    definition: "Application Programming Interface, a way for different programs to communicate.",
+    example: "We integrated a payment gateway using their API."
+  },
+  {
+    word: "Big Data",
+    definition: "Extremely large data sets that may be analyzed for patterns and trends.",
+    example: "Big data helps businesses understand customer behavior."
+  },
+  {
+    word: "UI/UX",
+    definition: "User Interface and User Experience, key aspects of product design.",
+    example: "Good UI/UX makes a website easy to use and engaging."
+  },
+  {
+    word: "Containers",
+    definition: "Lightweight software packages that include everything needed to run a piece of software.",
+    example: "Containers simplify the deployment of applications across environments."
+  }
+  ];
+
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  const word = wordList[dayOfYear % wordList.length]; // rotate words
+
+  document.getElementById("word").textContent = word.word;
+  document.getElementById("definition").textContent = word.definition;
+  document.getElementById("example").textContent = word.example;
+
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

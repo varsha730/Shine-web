@@ -1,0 +1,303 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+/***Header**/
+header {
+  background-color: #1b4f72; 
+  color: white;             
+  text-align: center;        
+  padding: 20px 0;           
+  font-size: 2.3em;            
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+}
+/***Back to Home**/
+.back-home-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.back-home-btn {
+  display: inline-block;
+  background-color: #1f5373;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.back-home-btn i {
+  margin-right: 8px;
+}
+
+.back-home-btn:hover {
+  background-color: #163d56;
+}
+
+
+/**Sub-topic-button**/
+.back-icon {
+  position: absolute;
+  left: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+  top: 30px;
+  margin-left: 10px;
+}
+/**Topic Head**/
+.head-top:hover{
+    text-decoration: underline;
+}
+/**Three Topics**/
+.topics-section {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 40px;
+}
+
+.topic-card {
+  background: white;
+  width: 300px;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.topic-card:hover {
+  transform: translateY(-5px);
+}
+
+.topic-card img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.topic-card h3 {
+  color: #1b4f72;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.topic-card p {
+  font-size: 0.95em;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+.topic-card i{
+  margin-left: 7px;
+}
+
+.topic-card button {
+  background-color: #2874a6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.topic-card button:hover {
+  background-color: #1a5276;
+}
+
+
+/**********************Aptitude Topicsss************************************************************************/
+.Aptitude-Topic{
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+}
+.topsection{
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      padding: 20px;
+      transition: transform 0.2s;
+}
+ .topsection:hover {
+      transform: translateY(-5px);
+}
+.subapp-topics{
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #163d56;
+}
+.sub-topics a{
+  display: block;
+  padding: 10px;
+  margin: 5px 0;
+  text-decoration: none;
+  background-color: #e6f0f7;
+  color: #163d56;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+
+}
+.sub-topics a:hover{
+  background-color: #d1e7f5;
+}
+
+
+/****** Responsive Design ********/
+
+/* Devices under 992px (Tablets and smaller) */
+@media (max-width: 992px) {
+  header {
+    font-size: 1.8em;
+    padding: 15px 0;
+  }
+
+  .Aptitude-Topic {
+    padding: 15px;
+  }
+
+  .topsection {
+    padding: 15px;
+  }
+
+  .subapp-topics {
+    font-size: 20px;
+  }
+
+  .sub-topics a {
+    font-size: 1em;
+    padding: 10px;
+  }
+}
+
+/* Devices under 768px (Mobile/Tablets) */
+@media (max-width: 768px) {
+  header {
+    font-size: 1.6em;
+    padding: 15px 0;
+  }
+
+  .back-icon {
+    font-size: 1.6rem;
+    top: 20px;
+  }
+
+  .topics-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .topic-card {
+    width: 90%;
+    margin: 10px 0;
+    padding: 15px;
+  }
+
+  .topic-card img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .topic-card h3 {
+    font-size: 1.3em;
+  }
+
+  .topic-card p {
+    font-size: 0.9em;
+  }
+
+  .topic-card button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+  }
+
+  .back-home-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .head-top h2 {
+    font-size: 1.4em;
+  }
+
+  .Aptitude-Topic {
+    padding: 10px;
+  }
+
+  .topsection {
+    padding: 12px;
+  }
+
+  .subapp-topics {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .sub-topics a {
+    font-size: 0.95em;
+    padding: 8px;
+  }
+}
+
+/* Devices under 480px (Small Phones) */
+@media (max-width: 480px) {
+  header {
+    font-size: 1.3em;
+    padding: 10px 0;
+  }
+
+  .back-icon {
+    font-size: 1.3rem;
+    top: 15px;
+  }
+
+  .topic-card {
+    padding: 12px;
+  }
+
+  .topic-card img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .topic-card h3 {
+    font-size: 1.1em;
+  }
+
+  .topic-card p {
+    font-size: 0.85em;
+  }
+
+  .back-home-btn {
+    font-size: 0.9rem;
+  }
+
+  .subapp-topics {
+    font-size: 17px;
+  }
+
+  .sub-topics a {
+    font-size: 0.9em;
+    padding: 6px;
+  }
+
+  .topsection {
+    padding: 10px;
+  }
+
+  .Aptitude-Topic {
+    padding: 5px;
+  }
+}

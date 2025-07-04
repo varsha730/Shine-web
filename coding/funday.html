@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fun-Friday Gallery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" href="../sampp.png">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding-top: 60px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+   .btn{
+  background-color: #1b4f72;
+  border: none;
+  font-weight: bold;
+  border: #f8f9fa;
+  color: white;
+}
+
+.btn {
+  color: #1b4f72;
+
+  box-shadow: 0 0 7px #a5aaaf;
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 1s ease;
+
+
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="  mt-4">
+  <a href="activity.html" class="btn text-light ">← Back to Activities</a>
+</div>
+
+    <h2 class="text-center mb-4">Fun-Fridays Activities</h2>
+    <div class="gallery">
+      <img src="../activity images/fun day 1.jpeg" alt="Workshop 1">
+      <img src="../activity images/fun day 2.jpeg" alt="Workshop 2">
+      <img src="../activity images/fun day 3.jpeg" alt="Workshop 3">
+      <img src="../activity images/fun day 4.jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (1).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (2).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (3).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (4).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (5).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (6).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (7).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (8).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (9).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (13).png" alt="Workshop 3">
+      <img src="../activity images/fun-friday (10).jpeg" alt="Workshop 3">
+      <img src="../activity images/fun-friday (11).jpeg" alt="Workshop 3">
+
+
+      <!-- Add more workshop-related images -->
+    </div>
+  </div>
+</body>
+</html>

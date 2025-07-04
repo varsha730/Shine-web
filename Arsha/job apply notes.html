@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Job Apply Notes - Shine Gateway</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="../sampp.png">
+
+  <style>
+    body {
+      background-color: #f5f8fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .form-section {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-section h2 {
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    label.required:after {
+      content: " *";
+      color: red;
+    }
+    .form-control:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+    }
+    .btn-primary {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-section">
+    <h2>Job Apply Notes</h2>
+
+
+    <form>
+        <div class="mb-3">
+        <label for="jobId" class="form-label required"><i class="bi bi-briefcase-fill me-1"></i>Job ID</label>
+        <input type="text" class="form-control" id="jobId" required data-bs-toggle="tooltip" title="Enter the unique alphanumeric Job ID">
+      </div>
+      <div class="mb-3">
+        <label for="companyName" class="form-label required"><i class="bi bi-buildings"></i> Company Name</label>
+        <input type="text" class="form-control" id="companyName" required data-bs-toggle="tooltip" title="Enter the name of the company you applied to">
+      </div>
+      <div class="mb-3">
+        <label for="role" class="form-label required"><i class="bi bi-person-badge"></i> Role</label>
+        <input type="text" class="form-control" id="role" required data-bs-toggle="tooltip" title="Enter the job role you applied for">
+      </div>
+      <div class="mb-3">
+        <label for="hrNumber" class="form-label required"><i class="bi bi-telephone"></i> HR Contact Number</label>
+        <input type="tel" class="form-control" id="hrNumber" pattern="[0-9]{10}" title="Please enter a 10-digit number" required data-bs-toggle="tooltip" title="Enter 10-digit HR contact number">
+      </div>
+      <div class="mb-3">
+        <label for="applyDate" class="form-label required"><i class="bi bi-calendar-date"></i> Apply Date</label>
+        <input type="date" class="form-control" id="applyDate" required data-bs-toggle="tooltip" title="Select the date you applied for the job">
+      </div>
+      <div class="mb-3">
+        <label for="remarks" class="form-label"><i class="bi bi-chat-text"></i> Remarks / Notes</label>
+        <textarea class="form-control" id="remarks" rows="3" data-bs-toggle="tooltip" title="Any notes about the job or application status"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-secondary mt-3" ><a href="index.html" class="btn">Back</a></button>
+            
+
+    </form>
+
+    <div id="successMessage" class="alert alert-success d-none mt-3" role="alert">
+      Job Apply Note submitted successfully!
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelector("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("successMessage").classList.remove("d-none");
+      this.reset();
+    });
+
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  </script>
+</body>
+</html>

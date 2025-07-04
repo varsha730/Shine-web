@@ -1,0 +1,124 @@
+:root{
+  --bg-color:hsl(207, 100%, 85%); 
+  --font:'Poppins';
+  --nav-bg-color:#1b4f72;
+  --nav-height:60px;
+  --nav-hover:#969696; 
+  --nav-weight:bold;
+  --text-color:#2E2E2E;
+
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: #2E2E2E;
+  background-color: var(--bg-color);
+  line-height: 1.6;
+}
+
+.text-dark-primary {
+  color: #2E2E2E;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #2E2E2E;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.3rem;
+}
+
+p, a, li, .nav-link, .card-text {
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.section-heading {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+
+.navbar{
+  background-color: var(--nav-bg-color);
+  height: var(--nav-height);
+  font-weight: var(--nav-weight);
+
+}
+.nav-link:hover{
+  color: var(--nav-hover)!important;
+   transition: color 1s ease;
+}
+.btn-custom {
+  background-color: #1b4f72;
+  border: none;
+  font-weight: bold;
+  border: #f8f9fa;
+  color: white;
+}
+
+.btn-custom:hover {
+  color: #1b4f72;
+
+  box-shadow: 0 0 7px #a5aaaf;
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 1s ease;
+
+
+}
+.card {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  color:var(--text-color);
+  border: #2E2E2E;
+  transition: background-color 1s ease, color 1s ease, box-shadow 1s ease;
+border-radius: 15px;
+      padding: 20px;
+      height: 100%;
+}
+
+.card:hover {
+  background-color: #1E90FF;
+  box-shadow: 0 6px 12px #666666;
+  color: #000000;
+}
+ .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+      font-weight: 600;
+      background-color:#1b4f72;
+      text-decoration: none;
+      border: 3px solid #f1f1f1;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      transition: 0.3s ease;
+      color: white;
+    }
+
+    .back-link:hover {
+       color: #1b4f72;
+      box-shadow: 0 0 7px #1E90FF;
+      background-color:#fff;
+      
+
+    }
+ a{
+  text-decoration: none;
+ }
+
+footer {
+  background-color: #2E2E2E;
+  color: #ccc;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.9rem;
+  position: sticky;
+}

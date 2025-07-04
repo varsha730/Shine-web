@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Quiz</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f4f8fb;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      header {
+        background-color: #1b4f72;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 2.3em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+      }
+      .quiz-container {
+        max-width: 800px;
+        margin: 100px auto 30px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 90%;
+      }
+      .question {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .options button {
+        display: block;
+        background-color: #e6f0f7;
+        color: black;
+        border: none;
+        padding: 12px;
+        margin: 10px auto;
+        width: 90%;
+        max-width: 800px;
+        border-radius: 6px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .options button:hover {
+        background-color: #d1e7f5;
+      }
+      #timer {
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+        color: red;
+        font-weight: bold;
+      }
+      .score-container {
+        text-align: center;
+        padding: 20px;
+      }
+      .score {
+        font-size: 1.8em;
+        color: #1b4f72;
+        margin-bottom: 25px;
+        font-weight: bold;
+      }
+      .result-buttons button {
+        background-color: #1b4f72;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        margin: 10px;
+        border-radius: 6px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .result-buttons button:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Aptitude Quiz</header>
+    <div class="quiz-container">
+      <div id="timer"></div>
+      <div id="quiz-box">
+        <div id="question" class="question"></div>
+        <div id="options" class="options"></div>
+        <div id="score-section" class="score-container" style="display: none">
+          <div id="score" class="score"></div>
+          <div class="result-buttons">
+            <button id="restart-quiz">Restart Quiz</button>
+            <button id="back-home">Back to Home</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          question: "What does SQL stand for?",
+          options: [
+            "Structured Query Language",
+            "Strong Question Language",
+            "Stylish Question Language",
+            "Statement Question Language",
+          ],
+          answer: "Structured Query Language",
+        },
+        {
+          question: "Which of the following is a NoSQL database?",
+          options: ["MySQL", "MongoDB", "Oracle", "PostgreSQL"],
+          answer: "MongoDB",
+        },
+        {
+          question:
+            "Which SQL statement is used to extract data from a database?",
+          options: ["GET", "OPEN", "SELECT", "EXTRACT"],
+          answer: "SELECT",
+        },
+        {
+          question: "What does SQL stand for?",
+          options: [
+            "Structured Query Language",
+            "Strong Question Language",
+            "Stylish Question Language",
+            "Statement Question Language",
+          ],
+          answer: "Structured Query Language",
+        },
+        {
+          question: "Which of the following is a NoSQL database?",
+          options: ["MySQL", "MongoDB", "Oracle", "PostgreSQL"],
+          answer: "MongoDB",
+        },
+        {
+          question:
+            "Which SQL statement is used to extract data from a database?",
+          options: ["GET", "OPEN", "SELECT", "EXTRACT"],
+          answer: "SELECT",
+        },
+        {
+          question: "Which SQL clause is used to filter the records?",
+          options: ["WHERE", "HAVING", "ORDER BY", "GROUP BY"],
+          answer: "WHERE",
+        },
+        {
+          question: "What is the default port for MySQL?",
+          options: ["3306", "8080", "1433", "1521"],
+          answer: "3306",
+        },
+        {
+          question: "Which command is used to remove all records from a table?",
+          options: ["DROP", "REMOVE", "DELETE", "TRUNCATE"],
+          answer: "TRUNCATE",
+        },
+        {
+          question: "Which function returns the current date in SQL?",
+          options: ["DATE()", "GETDATE()", "SYSDATE()", "TODAY()"],
+          answer: "GETDATE()",
+        },
+        {
+          question: "Which SQL keyword is used to sort the result-set?",
+          options: ["ORDER BY", "SORT BY", "GROUP BY", "RANK BY"],
+          answer: "ORDER BY",
+        },
+        {
+          question: "Which SQL function is used to count rows?",
+          options: ["COUNT()", "SUM()", "TOTAL()", "NUMBER()"],
+          answer: "COUNT()",
+        },
+        {
+          question:
+            "What type of SQL JOIN returns all rows when there is a match in one of the tables?",
+          options: ["INNER JOIN", "OUTER JOIN", "LEFT JOIN", "RIGHT JOIN"],
+          answer: "OUTER JOIN",
+        },
+        {
+          question:
+            "Which of the following is used to define the structure of a database?",
+          options: ["DML", "DDL", "DCL", "TCL"],
+          answer: "DDL",
+        },
+        {
+          question: "Which SQL statement is used to add new rows to a table?",
+          options: ["ADD", "INSERT INTO", "PUT", "NEW"],
+          answer: "INSERT INTO",
+        },
+        {
+          question:
+            "Which SQL statement is used to modify existing records in a table?",
+          options: ["MODIFY", "ALTER", "UPDATE", "CHANGE"],
+          answer: "UPDATE",
+        },
+        {
+          question:
+            "Which SQL statement is used to delete existing records in a table?",
+          options: ["REMOVE", "ERASE", "DELETE", "CANCEL"],
+          answer: "DELETE",
+        },
+        {
+          question: "What does a primary key uniquely identify?",
+          options: [
+            "A row in a table",
+            "A column in a table",
+            "A database",
+            "A schema",
+          ],
+          answer: "A row in a table",
+        },
+        {
+          question:
+            "Which of the following is a key that references the primary key of another table?",
+          options: ["Candidate Key", "Super Key", "Foreign Key", "Unique Key"],
+          answer: "Foreign Key",
+        },
+        {
+          question:
+            "Which SQL constraint ensures all values in a column are different?",
+          options: ["NOT NULL", "PRIMARY KEY", "UNIQUE", "FOREIGN KEY"],
+          answer: "UNIQUE",
+        },
+        {
+          question:
+            "Which SQL constraint ensures that a column cannot have a NULL value?",
+          options: ["UNIQUE", "PRIMARY KEY", "NOT NULL", "DEFAULT"],
+          answer: "NOT NULL",
+        },
+        {
+          question: "Which command is used to create a new table in SQL?",
+          options: ["ADD TABLE", "NEW TABLE", "CREATE TABLE", "MAKE TABLE"],
+          answer: "CREATE TABLE",
+        },
+        {
+          question:
+            "Which command is used to delete an entire table from the database?",
+          options: [
+            "DELETE TABLE",
+            "REMOVE TABLE",
+            "DROP TABLE",
+            "ERASE TABLE",
+          ],
+          answer: "DROP TABLE",
+        },
+        {
+          question:
+            "Which SQL clause is used with aggregate functions to group the result-set?",
+          options: ["WHERE", "HAVING", "ORDER BY", "GROUP BY"],
+          answer: "GROUP BY",
+        },
+        {
+          question: "Which SQL aggregate function returns the average value?",
+          options: ["AVG()", "MEAN()", "AVERAGE()", "CALC_AVG()"],
+          answer: "AVG()",
+        },
+        {
+          question: "Which SQL aggregate function returns the highest value?",
+          options: ["TOP()", "MAX()", "HIGHEST()", "GREATEST()"],
+          answer: "MAX()",
+        },
+        {
+          question: "Which SQL aggregate function returns the lowest value?",
+          options: ["BOTTOM()", "MIN()", "LOWEST()", "SMALLEST()"],
+          answer: "MIN()",
+        },
+        {
+          question:
+            "Which SQL aggregate function returns the sum of a numeric column?",
+          options: ["ADD()", "TOTAL()", "SUM()", "COLLECT()"],
+          answer: "SUM()",
+        },
+        {
+          question:
+            "Which SQL operator is used to search for a specified pattern in a column?",
+          options: ["MATCH", "LIKE", "FIND", "SEARCH"],
+          answer: "LIKE",
+        },
+        {
+          question:
+            "Which SQL operator is used to combine the result-set of two or more SELECT statements?",
+          options: ["JOIN", "COMBINE", "UNION", "MERGE"],
+          answer: "UNION",
+        },
+        {
+          question: "Which SQL statement is used to grant privileges to users?",
+          options: ["ALLOW", "GRANT", "PERMIT", "AUTHORIZE"],
+          answer: "GRANT",
+        },
+        {
+          question:
+            "Which SQL statement is used to revoke privileges from users?",
+          options: ["DENY", "BLOCK", "REVOKE", "FORBID"],
+          answer: "REVOKE",
+        },
+        {
+          question: "What is normalization in a database?",
+          options: [
+            "Process of optimizing query performance",
+            "Process of organizing data to minimize redundancy",
+            "Process of backing up data",
+            "Process of securing data",
+          ],
+          answer: "Process of organizing data to minimize redundancy",
+        },
+        {
+          question: "Which normal form removes repeating groups?",
+          options: ["1NF", "2NF", "3NF", "BCNF"],
+          answer: "1NF",
+        },
+        {
+          question:
+            "Which normal form requires all non-key attributes to be fully functionally dependent on the primary key?",
+          options: ["1NF", "2NF", "3NF", "BCNF"],
+          answer: "2NF",
+        },
+        {
+          question: "Which normal form eliminates transitive dependencies?",
+          options: ["1NF", "2NF", "3NF", "BCNF"],
+          answer: "3NF",
+        },
+        {
+          question: "What is a transaction in a database?",
+          options: [
+            "A single SQL statement",
+            "A logical unit of work",
+            "A database backup",
+            "A database query",
+          ],
+          answer: "A logical unit of work",
+        },
+        {
+          question:
+            "Which ACID property ensures that all changes within a transaction are completed or none are?",
+          options: ["Atomicity", "Consistency", "Isolation", "Durability"],
+          answer: "Atomicity",
+        },
+        {
+          question:
+            "Which ACID property ensures that data remains in a consistent state before and after a transaction?",
+          options: ["Atomicity", "Consistency", "Isolation", "Durability"],
+          answer: "Consistency",
+        },
+        {
+          question:
+            "Which ACID property ensures that concurrent transactions appear to execute in isolation from each other?",
+          options: ["Atomicity", "Consistency", "Isolation", "Durability"],
+          answer: "Isolation",
+        },
+        {
+          question:
+            "Which ACID property ensures that once a transaction is committed, its changes are permanent?",
+          options: ["Atomicity", "Consistency", "Isolation", "Durability"],
+          answer: "Durability",
+        },
+        {
+          question: "What does RDBMS stand for?",
+          options: [
+            "Relational Database Management System",
+            "Rapid Database Management System",
+            "Robust Data Management System",
+            "Relational Data Backup System",
+          ],
+          answer: "Relational Database Management System",
+        },
+        {
+          question: "Which of the following is an example of DDL?",
+          options: ["SELECT", "INSERT", "UPDATE", "CREATE"],
+          answer: "CREATE",
+        },
+        {
+          question: "Which of the following is an example of DML?",
+          options: ["CREATE", "ALTER", "GRANT", "INSERT"],
+          answer: "INSERT",
+        },
+        {
+          question: "Which of the following is an example of DCL?",
+          options: ["SELECT", "INSERT", "GRANT", "DELETE"],
+          answer: "GRANT",
+        },
+        {
+          question: "What is an index in a database?",
+          options: [
+            "A backup file",
+            "A data security measure",
+            "A data structure that improves the speed of data retrieval operations",
+            "A type of table",
+          ],
+          answer:
+            "A data structure that improves the speed of data retrieval operations",
+        },
+        {
+          question:
+            "Which type of index is automatically created when a primary key is defined?",
+          options: [
+            "Non-clustered index",
+            "Unique index",
+            "Clustered index",
+            "Full-text index",
+          ],
+          answer: "Clustered index",
+        },
+        {
+          question: "What is a view in SQL?",
+          options: [
+            "A physical table",
+            "A temporary table",
+            "A virtual table based on the result-set of a SQL statement",
+            "A database backup",
+          ],
+          answer: "A virtual table based on the result-set of a SQL statement",
+        },
+        {
+          question: "What is a stored procedure?",
+          options: [
+            "A single SQL query",
+            "A set of SQL statements stored in the database",
+            "A temporary table",
+            "A database connection",
+          ],
+          answer: "A set of SQL statements stored in the database",
+        },
+        {
+          question:
+            "Which command is used to save changes made by a transaction?",
+          options: ["SAVE", "COMMIT", "APPLY", "STORE"],
+          answer: "COMMIT",
+        },
+        {
+          question:
+            "Which command is used to undo changes made by a transaction?",
+          options: ["UNDO", "REVERT", "ROLLBACK", "CANCEL"],
+          answer: "ROLLBACK",
+        },
+        {
+          question: "What is a trigger in a database?",
+          options: [
+            "A type of index",
+            "A stored procedure that is automatically executed in response to certain events on a table",
+            "A database backup",
+            "A security mechanism",
+          ],
+          answer:
+            "A stored procedure that is automatically executed in response to certain events on a table",
+        },
+        {
+          question:
+            "Which of the following JOINs returns only the rows that have matching values in both tables?",
+          options: ["LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN", "INNER JOIN"],
+          answer: "INNER JOIN",
+        },
+        {
+          question:
+            "Which JOIN returns all rows from the left table, and the matching rows from the right table?",
+          options: ["INNER JOIN", "RIGHT JOIN", "LEFT JOIN", "FULL OUTER JOIN"],
+          answer: "LEFT JOIN",
+        },
+        {
+          question:
+            "Which JOIN returns all rows from the right table, and the matching rows from the left table?",
+          options: ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN"],
+          answer: "RIGHT JOIN",
+        },
+        {
+          question:
+            "Which JOIN returns all rows when there is a match in one of the tables?",
+          options: ["INNER JOIN", "LEFT JOIN", "RIGHT JOIN", "FULL OUTER JOIN"],
+          answer: "FULL OUTER JOIN",
+        },
+        {
+          question: "What is the purpose of the 'DISTINCT' keyword in SQL?",
+          options: [
+            "To sort the results",
+            "To filter out duplicate values",
+            "To count the rows",
+            "To group the results",
+          ],
+          answer: "To filter out duplicate values",
+        },
+        {
+          question:
+            "Which SQL clause is used to set the maximum number of rows to return?",
+          options: ["TOP", "LIMIT", "ROWNUM", "MAX_ROWS"],
+          answer: "LIMIT",
+        },
+        {
+          question: "What is a subquery in SQL?",
+          options: [
+            "A query that operates on multiple tables",
+            "A query that is embedded inside another SQL query",
+            "A query used for database administration",
+            "A query that returns no results",
+          ],
+          answer: "A query that is embedded inside another SQL query",
+        },
+        {
+          question: "Which SQL operator tests for the absence of any value?",
+          options: ["IS ZERO", "IS EMPTY", "IS NULL", "IS VOID"],
+          answer: "IS NULL",
+        },
+        {
+          question: "Which SQL operator tests for the presence of any value?",
+          options: [
+            "IS NOT ZERO",
+            "IS NOT EMPTY",
+            "IS NOT NULL",
+            "IS NOT VOID",
+          ],
+          answer: "IS NOT NULL",
+        },
+        {
+          question: "What does ORM stand for?",
+          options: [
+            "Object Relational Mapping",
+            "Online Report Management",
+            "Operational Resource Management",
+            "Ordered Row Mapping",
+          ],
+          answer: "Object Relational Mapping",
+        },
+        {
+          question:
+            "Which of the following is a common ORM framework for Python?",
+          options: [
+            "Hibernate",
+            "Entity Framework",
+            "SQLAlchemy",
+            "ActiveRecord",
+          ],
+          answer: "SQLAlchemy",
+        },
+        {
+          question:
+            "Which of the following is a common ORM framework for Java?",
+          options: ["Django ORM", "Entity Framework", "Hibernate", "Sequelize"],
+          answer: "Hibernate",
+        },
+        {
+          question: "What is a schema in a database?",
+          options: [
+            "A specific table",
+            "A logical collection of database objects",
+            "A type of index",
+            "A database user",
+          ],
+          answer: "A logical collection of database objects",
+        },
+        {
+          question: "What is the purpose of an 'ALIAS' in SQL?",
+          options: [
+            "To rename a table or column for the duration of a query",
+            "To create a new table",
+            "To define a primary key",
+            "To set a default value",
+          ],
+          answer: "To rename a table or column for the duration of a query",
+        },
+        {
+          question: "Which SQL clause is used for conditional aggregation?",
+          options: ["WHERE", "HAVING", "GROUP BY", "CASE"],
+          answer: "HAVING",
+        },
+        {
+          question: "What is the difference between DELETE and TRUNCATE?",
+          options: [
+            "DELETE logs individual row deletions; TRUNCATE doesn't",
+            "TRUNCATE can be rolled back; DELETE cannot",
+            "DELETE is faster; TRUNCATE is slower",
+            "DELETE removes the table structure; TRUNCATE removes only data",
+          ],
+          answer: "DELETE logs individual row deletions; TRUNCATE doesn't",
+        },
+        {
+          question:
+            "Which SQL wildcard character represents zero or more characters?",
+          options: ["?", "#", "%", "_"],
+          answer: "%",
+        },
+        {
+          question:
+            "Which SQL wildcard character represents a single character?",
+          options: ["%", "*", "_", "#"],
+          answer: "_",
+        },
+        {
+          question: "What is a composite key?",
+          options: [
+            "A key that consists of a single column",
+            "A key that consists of multiple columns",
+            "A key that is not unique",
+            "A key used for encryption",
+          ],
+          answer: "A key that consists of multiple columns",
+        },
+        {
+          question: "What is a candidate key?",
+          options: [
+            "Any column that can be a primary key",
+            "A foreign key",
+            "A key used for indexing",
+            "A non-unique key",
+          ],
+          answer: "Any column that can be a primary key",
+        },
+        {
+          question: "What is a super key?",
+          options: [
+            "A key that identifies a table",
+            "A set of attributes that uniquely identifies a tuple",
+            "A key that references another table",
+            "A primary key",
+          ],
+          answer: "A set of attributes that uniquely identifies a tuple",
+        },
+        {
+          question: "What is the purpose of the 'UNION ALL' operator?",
+          options: [
+            "Combines results and removes duplicates",
+            "Combines results and keeps all duplicates",
+            "Performs an inner join",
+            "Performs a full outer join",
+          ],
+          answer: "Combines results and keeps all duplicates",
+        },
+        {
+          question:
+            "Which SQL command is used to add a new column to an existing table?",
+          options: [
+            "ADD COLUMN",
+            "NEW COLUMN",
+            "ALTER TABLE ADD COLUMN",
+            "MODIFY TABLE ADD COLUMN",
+          ],
+          answer: "ALTER TABLE ADD COLUMN",
+        },
+        {
+          question:
+            "Which SQL command is used to remove a column from an existing table?",
+          options: [
+            "REMOVE COLUMN",
+            "DELETE COLUMN",
+            "ALTER TABLE DROP COLUMN",
+            "ERASE COLUMN",
+          ],
+          answer: "ALTER TABLE DROP COLUMN",
+        },
+        {
+          question: "What is a database transaction log used for?",
+          options: [
+            "Storing user login information",
+            "Recording all changes made to the database",
+            "Storing backup copies of the database",
+            "Tracking query performance",
+          ],
+          answer: "Recording all changes made to the database",
+        },
+        {
+          question: "What does ERD stand for?",
+          options: [
+            "Entity Relationship Diagram",
+            "Extended Relational Database",
+            "Efficient Relational Design",
+            "External Resource Definition",
+          ],
+          answer: "Entity Relationship Diagram",
+        },
+        {
+          question:
+            "Which of the following is a type of relationship in an ERD?",
+          options: [
+            "One-to-many",
+            "Many-to-none",
+            "Two-to-three",
+            "Zero-to-one",
+          ],
+          answer: "One-to-many",
+        },
+        {
+          question: "What is referential integrity?",
+          options: [
+            "Ensures data is consistent across tables related by foreign keys",
+            "Ensures data is unique in a column",
+            "Ensures data is not null",
+            "Ensures data is encrypted",
+          ],
+          answer:
+            "Ensures data is consistent across tables related by foreign keys",
+        },
+        {
+          question: "What is denormalization?",
+          options: [
+            "The process of breaking down tables into smaller ones",
+            "The process of adding redundant data to improve performance",
+            "The process of removing duplicate data",
+            "The process of encrypting data",
+          ],
+          answer: "The process of adding redundant data to improve performance",
+        },
+        {
+          question: "What is a database cursor?",
+          options: [
+            "A pointer to a specific row in a result set",
+            "A type of index",
+            "A database connection",
+            "A tool for backup",
+          ],
+          answer: "A pointer to a specific row in a result set",
+        },
+        {
+          question: "Which SQL statement is used to create a new database?",
+          options: [
+            "MAKE DATABASE",
+            "NEW DATABASE",
+            "CREATE DATABASE",
+            "BUILD DATABASE",
+          ],
+          answer: "CREATE DATABASE",
+        },
+        {
+          question:
+            "Which SQL statement is used to delete an existing database?",
+          options: [
+            "REMOVE DATABASE",
+            "ERASE DATABASE",
+            "DROP DATABASE",
+            "DELETE DATABASE",
+          ],
+          answer: "DROP DATABASE",
+        },
+        {
+          question: "What is a constraint in SQL?",
+          options: [
+            "A limit on the number of rows",
+            "A rule enforced on data columns in a table",
+            "A type of index",
+            "A database connection",
+          ],
+          answer: "A rule enforced on data columns in a table",
+        },
+        {
+          question:
+            "Which SQL constraint specifies a default value for a column?",
+          options: ["NOT NULL", "UNIQUE", "DEFAULT", "CHECK"],
+          answer: "DEFAULT",
+        },
+        {
+          question:
+            "Which SQL constraint is used to limit the value range that can be placed in a column?",
+          options: ["NOT NULL", "UNIQUE", "DEFAULT", "CHECK"],
+          answer: "CHECK",
+        },
+        {
+          question: "What is the purpose of the 'ORDER BY' clause in SQL?",
+          options: [
+            "To group rows",
+            "To filter rows",
+            "To sort the result-set",
+            "To join tables",
+          ],
+          answer: "To sort the result-set",
+        },
+        {
+          question:
+            "Which keyword is used to specify the order of sorting in descending order?",
+          options: ["ASC", "DESC", "UP", "DOWN"],
+          answer: "DESC",
+        },
+        {
+          question:
+            "Which keyword is used to specify the order of sorting in ascending order?",
+          options: ["ASC", "DESC", "UP", "DOWN"],
+          answer: "ASC",
+        },
+        {
+          question: "What does OLAP stand for?",
+          options: [
+            "Online Linear Analysis Processing",
+            "Online Analytical Processing",
+            "Offline Log Analysis Program",
+            "Open Link Access Protocol",
+          ],
+          answer: "Online Analytical Processing",
+        },
+        {
+          question: "What does OLTP stand for?",
+          options: [
+            "Online Transaction Processing",
+            "Offline Table Processing",
+            "Operational Log Tracking Protocol",
+            "Object-Oriented Link Protocol",
+          ],
+          answer: "Online Transaction Processing",
+        },
+        {
+          question: "What is a data warehouse?",
+          options: [
+            "A system for operational transactions",
+            "A large repository of integrated data from various sources",
+            "A small database for a single application",
+            "A temporary storage for data",
+          ],
+          answer: "A large repository of integrated data from various sources",
+        },
+        {
+          question: "What is ETL in data warehousing?",
+          options: [
+            "Extract, Transform, Load",
+            "Encode, Transmit, Link",
+            "Execute, Test, Log",
+            "Evaluate, Translate, Localize",
+          ],
+          answer: "Extract, Transform, Load",
+        },
+        {
+          question: "What is the purpose of a database backup?",
+          options: [
+            "To improve query performance",
+            "To prevent unauthorized access",
+            "To recover data in case of loss or corruption",
+            "To create new tables",
+          ],
+          answer: "To recover data in case of loss or corruption",
+        },
+        {
+          question: "What is replication in a database?",
+          options: [
+            "Creating multiple copies of a table",
+            "Creating multiple databases on one server",
+            "Maintaining multiple copies of data across different servers",
+            "Backing up data to a different location",
+          ],
+          answer:
+            "Maintaining multiple copies of data across different servers",
+        },
+        {
+          question: "What is sharding in a database?",
+          options: [
+            "A technique for backing up data",
+            "A method for horizontal partitioning of data across multiple servers",
+            "A type of database indexing",
+            "A security measure for data encryption",
+          ],
+          answer:
+            "A method for horizontal partitioning of data across multiple servers",
+        },
+        {
+          question: "Which command is used to rename a table in SQL?",
+          options: [
+            "RENAME TABLE",
+            "ALTER TABLE RENAME TO",
+            "CHANGE TABLE NAME",
+            "MODIFY TABLE NAME",
+          ],
+          answer: "ALTER TABLE RENAME TO",
+        },
+        {
+          question: "Which SQL function converts a string to uppercase?",
+          options: ["UPPER()", "CAPS()", "TO_UPPER()", "STR_UPPER()"],
+          answer: "UPPER()",
+        },
+        {
+          question: "Which SQL function converts a string to lowercase?",
+          options: ["LOWER()", "SMALL()", "TO_LOWER()", "STR_LOWER()"],
+          answer: "LOWER()",
+        },
+        {
+          question: "Which SQL function extracts a substring from a string?",
+          options: [
+            "SUBSTR()",
+            "EXTRACT()",
+            "GET_SUBSTRING()",
+            "PART_STRING()",
+          ],
+          answer: "SUBSTR()",
+        },
+        {
+          question: "Which SQL function concatenates two or more strings?",
+          options: ["CONCAT()", "JOIN_STR()", "ADD_STR()", "APPEND()"],
+          answer: "CONCAT()",
+        },
+        {
+          question: "What is the purpose of a database transaction?",
+          options: [
+            "To manage database security",
+            "To ensure data integrity during operations",
+            "To create database backups",
+            "To optimize query execution",
+          ],
+          answer: "To ensure data integrity during operations",
+        },
+        {
+          question: "What does CAP theorem refer to in distributed systems?",
+          options: [
+            "Consistency, Availability, Partition tolerance",
+            "Completeness, Accuracy, Performance",
+            "Cost, Access, Privacy",
+            "Concurrency, Atomicity, Persistence",
+          ],
+          answer: "Consistency, Availability, Partition tolerance",
+        },
+        {
+          question:
+            "Which database type stores data in a document-like structure, typically JSON?",
+          options: ["Relational", "Graph", "Key-Value", "Document"],
+          answer: "Document",
+        },
+        {
+          question: "Which database type stores data as nodes and edges?",
+          options: ["Relational", "Document", "Graph", "Column-Family"],
+          answer: "Graph",
+        },
+        {
+          question: "Which database type stores data as key-value pairs?",
+          options: ["Relational", "Document", "Graph", "Key-Value"],
+          answer: "Key-Value",
+        },
+        {
+          question: "What is the primary purpose of indexing in a database?",
+          options: [
+            "To prevent data duplication",
+            "To speed up data retrieval",
+            "To enforce data integrity",
+            "To secure data",
+          ],
+          answer: "To speed up data retrieval",
+        },
+        {
+          question: "What is a deadlock in a database?",
+          options: [
+            "A server crash",
+            "A situation where two or more transactions are waiting for each other to release locks",
+            "A database backup failure",
+            "A type of query optimization",
+          ],
+          answer:
+            "A situation where two or more transactions are waiting for each other to release locks",
+        },
+        {
+          question: "What is a constraint violation?",
+          options: [
+            "A security breach",
+            "An attempt to insert, update, or delete data that violates a defined rule",
+            "A database server error",
+            "A network issue",
+          ],
+          answer:
+            "An attempt to insert, update, or delete data that violates a defined rule",
+        },
+        {
+          question:
+            "Which SQL command is used to display information about tables?",
+          options: [
+            "SHOW TABLES",
+            "LIST TABLES",
+            "DISPLAY TABLES",
+            "VIEW TABLES",
+          ],
+          answer: "SHOW TABLES",
+        },
+        {
+          question: "What is a database management system (DBMS)?",
+          options: [
+            "Software for creating and managing databases",
+            "A hardware component of a server",
+            "A programming language for databases",
+            "A tool for data analysis",
+          ],
+          answer: "Software for creating and managing databases",
+        },
+        {
+          question: "What is data integrity?",
+          options: [
+            "The speed of data retrieval",
+            "The accuracy and consistency of data over its entire life-cycle",
+            "The security of data",
+            "The amount of data stored",
+          ],
+          answer:
+            "The accuracy and consistency of data over its entire life-cycle",
+        },
+        {
+          question: "What is a SQL injection?",
+          options: [
+            "A method for database backup",
+            "A technique for optimizing queries",
+            "A code injection technique that might destroy your database",
+            "A type of database indexing",
+          ],
+          answer: "A code injection technique that might destroy your database",
+        },
+        {
+          question: "What is data redundancy?",
+          options: [
+            "The accuracy of data",
+            "The duplication of data",
+            "The security of data",
+            "The consistency of data",
+          ],
+          answer: "The duplication of data",
+        },
+        {
+          question: "What is the purpose of the 'HAVING' clause?",
+          options: [
+            "To filter individual rows",
+            "To filter groups based on aggregate conditions",
+            "To sort the result-set",
+            "To join tables",
+          ],
+          answer: "To filter groups based on aggregate conditions",
+        },
+        {
+          question: "What is a clustered index?",
+          options: [
+            "An index that stores data in a random order",
+            "An index that defines the physical order of data in a table",
+            "An index that does not affect the physical order of data",
+            "An index that stores only unique values",
+          ],
+          answer: "An index that defines the physical order of data in a table",
+        },
+        {
+          question: "What is a non-clustered index?",
+          options: [
+            "An index that stores data in a random order",
+            "An index that defines the physical order of data in a table",
+            "An index that does not affect the physical order of data",
+            "An index that stores only unique values",
+          ],
+          answer: "An index that does not affect the physical order of data",
+        },
+      ];
+
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      let shuffledQuestions = [];
+      let currentQuestionIndex = 0;
+      let score = 0;
+      let timerInterval;
+
+      const questionBox = document.getElementById("question");
+      const optionsBox = document.getElementById("options");
+      const scoreSection = document.getElementById("score-section");
+      const scoreBox = document.getElementById("score");
+      const restartQuizBtn = document.getElementById("restart-quiz");
+      const backHomeBtn = document.getElementById("back-home");
+      const timerDisplay = document.getElementById("timer");
+
+      function startTimer(duration) {
+        let timeLeft = duration;
+        timerDisplay.textContent = `⏳ Time Left: ${formatTime(timeLeft)}`;
+
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          timerDisplay.textContent = `⏳ Time Left: ${formatTime(timeLeft)}`;
+
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            showScore();
+          }
+        }, 1000);
+      }
+
+      function formatTime(seconds) {
+        const min = Math.floor(seconds / 60);
+        const sec = seconds % 60;
+        return `${min}:${sec < 10 ? "0" + sec : sec}`;
+      }
+
+      function startQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        shuffledQuestions = shuffle([...questions]).slice(0, 20);
+
+        questionBox.style.display = "block";
+        optionsBox.style.display = "block";
+        scoreSection.style.display = "none";
+        timerDisplay.style.display = "block";
+
+        clearInterval(timerInterval);
+        startTimer(60 * 1);
+
+        loadQuestion();
+      }
+
+      function loadQuestion() {
+        if (currentQuestionIndex < shuffledQuestions.length) {
+          const currentQuestion = shuffledQuestions[currentQuestionIndex];
+          questionBox.textContent = `Q${currentQuestionIndex + 1}. ${currentQuestion.question}`;
+          optionsBox.innerHTML = "";
+
+          currentQuestion.options.forEach((option) => {
+            const btn = document.createElement("button");
+            btn.textContent = option;
+            btn.onclick = () => {
+              if (option === currentQuestion.answer) score++;
+              currentQuestionIndex++;
+              loadQuestion();
+            };
+            optionsBox.appendChild(btn);
+          });
+        } else {
+          showScore();
+        }
+      }
+
+      function showScore() {
+        clearInterval(timerInterval);
+        questionBox.style.display = "none";
+        optionsBox.style.display = "none";
+        timerDisplay.style.display = "none";
+        scoreSection.style.display = "block";
+
+        scoreBox.innerHTML = `🎉 You scored <strong>${score}</strong> out of <strong>${shuffledQuestions.length}</strong>.`;
+      }
+
+      restartQuizBtn.addEventListener("click", startQuiz);
+      backHomeBtn.addEventListener("click", () => {
+        window.location.href = "quiz.html";
+        alert("Navigating back to home");
+      });
+
+      startQuiz();
+    </script>
+  </body>
+</html>
